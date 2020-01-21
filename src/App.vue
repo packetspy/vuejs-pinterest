@@ -3,14 +3,18 @@
     <div class="container">
       <div class="button-wrapper">
         <button class="btn" @click="searchUnsplash('Autumn')">Autumn</button>
+        <button class="btn" @click="searchUnsplash('Motocycle')">Motocycle</button>
       </div>
+      <stack :column-min-width="300" :gutter-width="15" :gutter-height="15" monitor-images-loaded>
+        <stack-item v-for="(image, i) in images" :key="i" style="transition: transform 300ms">
+          <img :src="image.urls.small" :alt="image.alt_description" />
+        </stack-item>
+      </stack>
     </div>
   </div>
 </template>
 
 <script>
-//import HelloWorld from "./components/HelloWorld.vue";
-
 import Axios from "axios";
 import { Stack, StackItem } from "vue-stack-grid";
 
@@ -30,7 +34,7 @@ export default {
         `https://api.unsplash.com/search/photos?query=${topic}&per_page=20`,
         {
           headers: {
-            Authorization: "Client-ID <YourAccessKeyGoesHere>",
+            Authorization: `Client-ID ${process.env.VUE_APP_UNSPLASH}`,
             "Accept-Version": "v1"
           }
         }
