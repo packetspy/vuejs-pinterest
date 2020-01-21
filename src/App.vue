@@ -66,4 +66,14 @@ export default {
   color: white;
   padding: 10px 20px;
 }
+
+.btn:not(:last-child) {
+  margin-right: 10px;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
 </style>
